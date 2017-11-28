@@ -6,15 +6,18 @@ module.exports = {
     filename: "bundle.js"
   },
   module: {
-    loaders: [
+    rules: [
       {
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: "babel"
-      }
-    ]
+        use: [
+          'babel-loader',
+        ],
+      },
+    ],
   },
   resolve: {
-    extensions: ["", ".js", ".jsx"]
+    extensions: [".js", ".jsx"]
   },
   devServer: {
     contentBase: "./"
