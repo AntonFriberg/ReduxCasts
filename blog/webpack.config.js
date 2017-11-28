@@ -1,23 +1,26 @@
 module.exports = {
-  entry: ["./src/index.js"],
+  entry: [
+    "webpack-dev-server/client?http://localhost:8080",
+    "./src/index.js"
+  ],
   output: {
     path: __dirname,
     publicPath: "/",
     filename: "bundle.js"
   },
   module: {
-    loaders: [
+    rules: [
       {
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: "babel",
-        query: {
-          presets: ["react", "es2015", "stage-1"]
-        }
-      }
-    ]
+        use: [
+          'babel-loader',
+        ],
+      },
+    ],
   },
   resolve: {
-    extensions: ["", ".js", ".jsx"]
+    extensions: [".js", ".jsx"]
   },
   devServer: {
     historyApiFallback: true,
